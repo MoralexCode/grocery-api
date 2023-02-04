@@ -1,0 +1,19 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:13.2
+
+pipelines:
+  branches:
+    dev:
+    - step:
+        name: Deploy to dev Environment
+        deployment: dev
+        caches:
+          - node
+        script:
+            - apt-get update && apt-get install -y rsync
+            - ssh-keyscan -H  ${MORALEX_USER}@${MORALEX_SERVER} >> ~/.ssh/known_hosts
+            - ssh ${MORALEX_USER}@${MORALEX_SERVER} 'cd ~/urdilab-api/ &&  pm2 delete urdilab ;  git pull origin dev ; npm i;  NODE_ENV=development pm2 start urdilab.js '
