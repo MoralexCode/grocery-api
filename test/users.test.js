@@ -4,7 +4,8 @@ const { app, server } = require("../grocery");
 const api = supertest(app);
 const { credentials, contentType } = require("./helper");
 const auth = {};
-//login to get auth token
+
+// login to get auth token
 beforeEach(async () => {
   await api
     .post("/api/v1/login")

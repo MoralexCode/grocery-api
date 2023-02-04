@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  app:
+  grocery:
     container_name: grocery
     build:
       context: .
@@ -13,10 +13,7 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     environment:
-      NODE_ENV: development
-      # MYSQL_HOST: database
-    # networks:
-    #   grocery_network:
+      NODE_ENV: development 
 
   mysql_server:  # <- ;)
     container_name: grocerydb
@@ -26,18 +23,14 @@ services:
     # restart: always
     # env_file:  # <-- we use the previously defined values
     #  - containers/db/database.env  
-    # volumes:
-    #  - database_volume:/var/lib/mysql 
+    volumes:
+     - database_volume:/var/lib/mysql 
     environment: 
       - MYSQL_DATABASE=grocery
       - MYSQL_USER=MoralexCode
       - MYSQL_PASSWORD=s3cr3t
-      - MYSQL_ROOT_PASSWORD=s3cr3t
-    # networks:
-    #   grocery_network:
+      - MYSQL_ROOT_PASSWORD=s3cr3t 
  
 
-# volumes:
-#   database_volume:
-# networks:
-#   grocery_network:
+volumes:
+  database_volume: 

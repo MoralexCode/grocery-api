@@ -1,8 +1,14 @@
 {
   "name": "grocery-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "This app is a demo from a point of sales to grocery",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "dev:build": "docker compose up --build",
     "dev": "docker compose up",
@@ -35,7 +41,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^29.3.1",
+    "jest": "^29.2.2",
     "supertest": "^6.3.2"
   },
   "bugs": {

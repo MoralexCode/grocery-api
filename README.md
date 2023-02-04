@@ -26,7 +26,7 @@ Puedes obtener mas informacion en mi pagina web : ![test](https://img.shields.io
 
 ```
 
-    git clone https://github.com/MoralexCode/grocery-api.git
+  git clone https://github.com/MoralexCode/grocery-api.git
 ```
 
 2.-Entras al proyecto con `cd grocery-api`
@@ -34,19 +34,18 @@ Puedes obtener mas informacion en mi pagina web : ![test](https://img.shields.io
 3.-Crea un archivo `.env` en la raiz del proyecto y agregar las siguientes variables de entorno:
 
 ```
-DB_USER=admin
-DB_PASSWORD=
+DB_PASSWORD=s3cr3t
+DB_USER=MoralexCode
 DB_NAME=grocery
-DB_HOST= us-west-2.rds.amazonaws.com
-DB_PORT=3306
+DB_HOST=mysql_server
 DB_DIALECT=mysql
+DB_PORT=3307
 NODE_ENV=development
 PORT=3700
 HOST=localhost
 JWT_KEY=MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAJGN
-JWT_PUBLIC_KEY=MDyyDQYJKoZIhvcNAQEBBQADKwAwKAIhAJGN/pB3qU/V6lV7l2gqZV67kbpV+uyRz5HwuLYbiRb5AgMBAAE=
-JWT_PRIVATE_KEY=MIHBAgEAMA0GCSqGSIb3DQEBQAUABIGsMIGpAgEAAiEAkY3+kHepT9XqVXuXaCplXruRulX4hNHPkfC4thuJFvkCAwEAAQIgD6Rl3hqt/GFtzH/6tnwP5qMAtjjtgJfhtZY2dsA/7gECEQDss1987RWbt5cwRVUTvobBAhEAnWwkDETrEmOHv8IcRSiWOQIQY3D0Q9qiwlm99bSbCoF3wQIQVYRzqL6fvOOY0REP7nn38QIQL82SsMTJL5Eh1YymVKgj2A==
-
+JWT_PUBLIC_KEY=MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAJGN/pB3qU/V6lV7l2gqZV67kbpV+ITRz5HwuLYbiRb5AgMBAAE=
+JWT_PRIVATE_KEY=MIHBAgEAMA0GCSqGSIb3DQEBAQUABIGsMIGpAgEAAiEAkY3+kHepT9XqVXuXaCplXruRulX4hNHPkfC4thuJFvkCAwEAAQIgD6Rl3hqt/GFtzH/6tnwP5qMAtjjtgJfhtZY2dsA/7gECEQDss1987RWbt5cwRVUTvobBAhEAnWwkDETrEmOHv8IcRSiWOQIQY3D0Q9qiwlm99bSbCoF3wQIQVYRzqL6fvOOY0REP7nn38QIQL82SsMTJL5Eh1YymVKgj2A==
 
 ```
 
@@ -58,6 +57,12 @@ JWT_PRIVATE_KEY=MIHBAgEAMA0GCSqGSIb3DQEBQAUABIGsMIGpAgEAAiEAkY3+kHepT9XqVXuXaCpl
 
     npm run dev:build
 
+```
+
+Para crear la DB e iniciar los datos, puedes ejecutar:
+
+```
+docker compose run --rm grocery node sql/index.js
 ```
 
 > Nota solo es necesario construir la primera vez, posteriormente solo ejecuta `npm run dev`
@@ -73,6 +78,7 @@ JWT_PRIVATE_KEY=MIHBAgEAMA0GCSqGSIb3DQEBQAUABIGsMIGpAgEAAiEAkY3+kHepT9XqVXuXaCpl
 6.-Correr la aplicacion:
 
 ```
+    node sql/index.js
 
     npm start
 
@@ -98,6 +104,17 @@ curl --location --request POST 'http://localhost:3700/api/v1/users' \
 
 }'
 
+```
+
+Hacer login y generar un token:
+
+```
+curl --location --request POST 'http://localhost:3700/api/v1/login' \
+--header 'Content-Type: application/json' \
+--data-raw ' {
+  "email": "oscar@moralexcode.com",
+  "password": "123$5"
+}'
 ```
 
 Crear un producto:
@@ -138,17 +155,6 @@ De lo contrario solo ejecutar :
 
     npm run test
 
-```
-
-Si hubiera un problema con el usuario, podrias ejecutar comando para crear al usuario:
-
-```
-curl --location --request POST 'http://localhost:3700/api/v1/users' \
---header 'Content-Type: application/json' \
---data-raw ' {
-  "email": "oscar@moralexcode.com",
-  "password": "123$5"
-}'
 ```
 
 ## Licencia

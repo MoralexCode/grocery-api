@@ -6,7 +6,7 @@ const boxen = require("boxen");
 const cors = require("cors");
 const pkg = require("./package.json");
 const { cyan } = require("chalk");
-const initDB = require("./sql");
+// const initDB = require("./sql");
 const { PORT, HOST } = process.env; // GET environment variables
 
 app.use(cors());
@@ -20,7 +20,7 @@ app.use("/api", routes);
 
 const server = app.listen(PORT || 3000, () => {
   const appName = pkg.name;
-  setTimeout(initDB, 20000);
+  // setTimeout(initDB, 20000);
   info(
     boxen(
       `👂Listening at http://${HOST}:${PORT}/\n[DB] Conectada con éxito  \n🔥  ${cyan(

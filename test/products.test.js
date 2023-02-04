@@ -5,11 +5,11 @@ const api = supertest(app);
 const { credentials, contentType } = require("./helper");
 const auth = {};
 const product = {
-  name: "Nutrileche",
-  description: "Leche liquida",
-  stock: 50,
-  proces: 25.6,
-  expiration_date: "2022-10-28 23:40:20",
+  name: "Atun Premium 250g",
+  description: "Pescado con al valor nutrimental",
+  stock: 150,
+  price: 35.6,
+  expiration_date: "2024-10-28 23:40:20",
   barcode: "1234567890",
 };
 //login to get auth token

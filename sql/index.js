@@ -2,6 +2,8 @@
 /**
  * Star db with tables  and some data
  */
+require("../utils/global"); //load global.js to add new functions to Global enviroment
+require("dotenv").config();
 const conexion = require("../conexion/conexion");
 const query1 = `CREATE TABLE IF NOT EXISTS  grocery_users (
       id int(11) NOT NULL AUTO_INCREMENT,
@@ -61,7 +63,6 @@ async function initDB() {
 async function tables_exist() {
   const query = `show tables;`;
   const [tables] = await run(query);
-  //   info("ra,", tables.length);
   if (tables.length > 0) return true;
   return false;
 }
@@ -74,4 +75,5 @@ async function create_tables() {
 async function run(query) {
   return await conexion.query(query, { raw: true });
 }
-module.exports = initDB;
+initDB();
+// module.exports = initDB;
